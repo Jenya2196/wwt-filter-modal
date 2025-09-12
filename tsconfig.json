@@ -16,7 +16,7 @@
 		"types": ["vite-plugin-svgr/client", "vitest/globals"],
 		"paths": {
 			"@/*": ["./src/*"],
-			"@components/*": ["./src/components/*"],
+			"@components/*": ["./src/components/*"]
 		},
 
 		/* Linting */
