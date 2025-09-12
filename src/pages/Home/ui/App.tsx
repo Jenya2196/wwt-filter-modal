@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import FilterModal from '@/components/FilterModal'
+import Button from '@/components/UI/Button'
 import { useFilterStore } from '@/shared/store/filterStore'
 
 export const App = () => {
@@ -9,16 +10,11 @@ export const App = () => {
 
 	return (
 		<>
-			<section className="w-full h-dvh flex flex-col items-center justify-center">
-				<h1 className="text-6xl text-gray-600 mb-12">
+			<section className="w-full h-dvh flex flex-col items-center gap-3">
+				<h1 className="text-6xl text-gray-600">
 					WinWinTravel frontend test task
 				</h1>
-				<button
-					onClick={() => setOpen(true)}
-					className="p-2 bg-blue-500 rounded hover:bg-blue-600 mb-6"
-				>
-					Open Filters
-				</button>
+				<Button onClick={() => setOpen(true)}>Open Filters</Button>
 
 				{/* Отображение выбранных фильтров для дебага */}
 				<div className="w-3/4 max-w-3xl p-4 bg-gray-100 rounded text-sm text-gray-700 overflow-auto">
