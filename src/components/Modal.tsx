@@ -37,23 +37,22 @@ function Modal({ title, className, children, onClose, isOpen }: ModalProps) {
 		<div
 			ref={mainRef}
 			className={clsx(
-				'fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 backdrop-blur-xs',
+				'fixed inset-0 z-50 h-full flex items-start justify-center transition-opacity duration-300 backdrop-blur-xs',
 				animateIn ? 'opacity-100' : 'opacity-0'
 			)}
+			style={{ overflowY: 'auto' }}
 			onClick={handleClose}
 		>
 			<div
 				className={clsx(
-					'relative border w-full min-h-74 max-h-10/11 md:max-h-4/5 bg-white mt-20 md:mx-10 md:my-20 lg:m-20 rounded-t-2xl md:rounded-2xl p-6 transform transition-all duration-300 flex flex-col',
+					'relative w-full mt-10 md:mx-20 md:my-10 lg:m-20 bg-white rounded-t-2xl md:rounded-2xl p-6 transform transition-all duration-300 flex flex-col',
 					animateIn ? 'opacity-100 scale-100' : 'opacity-0 scale-95',
 					className
 				)}
 				onClick={e => e.stopPropagation()}
 			>
-				{/* scroll all content */}
-
 				<div className="flex items-center justify-center relative h-12">
-					<h2 className="text-[40px] font-semibold">{title}</h2>
+					<h2 className="text-4xl md:text-[40px] font-semibold">{title}</h2>
 					<button
 						onClick={handleClose}
 						className="absolute top-0 right-0 p-2 rounded-full hover:bg-gray-200 transition hover:cursor-pointer"
@@ -73,7 +72,7 @@ function Modal({ title, className, children, onClose, isOpen }: ModalProps) {
 						</svg>
 					</button>
 				</div>
-				<div className="overflow-y-auto">{children}</div>
+				{children}
 			</div>
 		</div>
 	)
