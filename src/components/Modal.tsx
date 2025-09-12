@@ -44,7 +44,7 @@ function Modal({ title, className, children, onClose, isOpen }: ModalProps) {
 		>
 			<div
 				className={clsx(
-					'relative border w-full min-h-74 max-h-9/10 md:max-h-4/5 bg-white mt-20 md:mx-10 md:my-20 lg:m-20 rounded-t-2xl md:rounded-2xl p-6 transform transition-all duration-300 flex flex-col',
+					'relative border w-full min-h-74 max-h-10/11 md:max-h-4/5 bg-white mt-20 md:mx-10 md:my-20 lg:m-20 rounded-t-2xl md:rounded-2xl p-6 transform transition-all duration-300 flex flex-col',
 					animateIn ? 'opacity-100 scale-100' : 'opacity-0 scale-95',
 					className
 				)}
