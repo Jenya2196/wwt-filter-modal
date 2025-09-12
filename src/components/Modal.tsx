@@ -51,12 +51,12 @@ function Modal({ title, className, children, onClose, isOpen }: ModalProps) {
 				onClick={e => e.stopPropagation()}
 			>
 				{/* scroll all content */}
-				{/* <div className="overflow-y-auto"> */}
+
 				<div className="flex items-center justify-center relative h-12">
 					<h2 className="text-[40px] font-semibold">{title}</h2>
 					<button
 						onClick={handleClose}
-						className="absolute top-0 right-0 p-2 rounded-full hover:bg-gray-200 transition"
+						className="absolute top-0 right-0 p-2 rounded-full hover:bg-gray-200 transition hover:cursor-pointer"
 					>
 						<svg
 							width="12"
@@ -73,8 +73,7 @@ function Modal({ title, className, children, onClose, isOpen }: ModalProps) {
 						</svg>
 					</button>
 				</div>
-				{children}
-				{/* </div> */}
+				<div className="overflow-y-auto">{children}</div>
 			</div>
 		</div>
 	)
@@ -86,7 +85,7 @@ function Content({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
 	return (
 		<div
 			{...rest}
-			className={clsx((className = 'flex-1 overflow-y-auto mt-4'), className)}
+			className={clsx((className = 'flex-1 overflow-y-auto'), className)}
 		/>
 	)
 }

@@ -9,6 +9,7 @@ import { useFilterData } from '@/shared/hooks/useFilterData'
 import { useFilterStore } from '@/shared/store/filterStore'
 
 import Modal from './Modal'
+import Button from './UI/Button'
 
 function FilterModal({
 	isOpen,
@@ -79,54 +80,45 @@ function FilterModal({
 				isOpen={isOpen}
 				onClose={onClose}
 			>
-				<Modal.Content>
-					{filters?.filterItems.map(item => (
-						<div
-							key={item.id}
-							className="flex flex-col gap-4 text-gray-600"
-						>
-							<div className="font-medium text-2xl">{item.name}</div>
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-								{item.options.map(option => (
-									<label
-										key={option.id}
-										className="flex items-center text-center h-6"
-									>
-										<input
-											type="checkbox"
-											className="mr-4 h-6 w-6"
-											name={option.id}
-											checked={localFilter.some(
-												f =>
-													f.id === item.id && f.optionsIds.includes(option.id)
-											)}
-											onChange={() => toggleOption(item.id, option.id)}
-										/>
-										<span className="text-gray-500">{option.name}</span>
-									</label>
-								))}
-							</div>
-							<Modal.Line />
-						</div>
-					))}
+				<Modal.Line />
 
-					<Modal.Footer>
-						<div className="flex flex-col justify-center items-center gap-4">
-							<button
-								onClick={handleApply}
-								className="rounded-2xl w-[186px] h-[64px] p-2 bg-[#FF5F00] text-white font-semibold text-base"
-							>
-								Apply
-							</button>
-							<button
-								onClick={() => resetFilter()}
-								className="md:absolute md:top-1/2 md:right-0 underline text-[#078691] font-medium hover:cursor-pointer"
-							>
-								Clear all parameters
-							</button>
+				{filters?.filterItems.map(item => (
+					<div
+						key={item.id}
+						className="flex flex-col gap-4 text-gray-600"
+					>
+						<div className="font-medium text-2xl">{item.name}</div>
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+							{item.options.map(option => (
+								<label
+									key={option.id}
+									className="flex items-center text-center h-6"
+								>
+									<input
+										type="checkbox"
+										className="mr-4 h-6 w-6"
+										name={option.id}
+										checked={localFilter.some(
+											f => f.id === item.id && f.optionsIds.includes(option.id)
+										)}
+										onChange={() => toggleOption(item.id, option.id)}
+									/>
+									<span className="text-gray-500">{option.name}</span>
+								</label>
+							))}
 						</div>
-					</Modal.Footer>
-				</Modal.Content>
+						<Modal.Line />
+					</div>
+				))}
+				<div className="relative flex flex-col justify-center items-center gap-4">
+					<Button onClick={handleApply}>Apply</Button>
+					<button
+						onClick={() => resetFilter()}
+						className="md:absolute md:top-1/2 md:right-0 underline text-[#078691] font-medium hover:cursor-pointer"
+					>
+						Clear all parameters
+					</button>
+				</div>
 			</Modal>
 
 			{/* Confirm Modal */}
@@ -137,18 +129,13 @@ function FilterModal({
 				className="flex flex-col justify-between"
 			>
 				<div className="relative top-11/12 flex justify-center gap-6 h-full">
-					<button
+					<Button
 						onClick={cancelApply}
-						className="w-[280px] h-16 rounded-2xl border border-gray-300 text-gray-600"
+						variant="gray"
 					>
 						Cancel
-					</button>
-					<button
-						onClick={confirmApply}
-						className="w-[280px] h-16 rounded-2xl bg-[#FF5F00] text-white font-semibold"
-					>
-						Confirm
-					</button>
+					</Button>
+					<Button onClick={confirmApply}>Confirm</Button>
 				</div>
 			</Modal>
 		</>

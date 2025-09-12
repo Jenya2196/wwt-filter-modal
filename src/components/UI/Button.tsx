@@ -2,23 +2,25 @@ import { ButtonHTMLAttributes } from 'react'
 
 import clsx from 'clsx'
 
-type TVariantButton = 'primary'
+type TVariantButton = 'primary' | 'gray'
 type Props = {
 	variant?: TVariantButton
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-function Button({ variant = 'primary', children, ...rest }: Props) {
+function Button({ variant = 'primary', className, children, ...rest }: Props) {
 	const baseClasses =
-		'text-center px-16 py-6 rounded-2xl font-semibold text-base hover:cursor-pointer flex items-center justify-center'
+		'min-w-[184px] h-[64px] text-center px-16 py-6 rounded-2xl font-semibold text-base hover:cursor-pointer flex items-center justify-center '
 	const variantClasses = clsx({
-		'min-w-[184px] h-[64px] bg-[#FF5F00] hover:bg-[#FF9E59] text-white active:bg-[#FF3D00]':
-			variant === 'primary'
+		'bg-[#FF5F00] hover:bg-[#FF9E59] text-white active:bg-[#FF3D00]':
+			variant === 'primary',
+		'border border-gray-300 text-gray-600 bg-white hover:bg-[#F4F4F4] active:border-[#FF3D00] active:text-[#FF3D00]':
+			variant === 'gray'
 	})
 
 	return (
 		<button
 			{...rest}
-			className={clsx(baseClasses, variantClasses)}
+			className={clsx(baseClasses, variantClasses, className)}
 		>
 			{children}
 		</button>
