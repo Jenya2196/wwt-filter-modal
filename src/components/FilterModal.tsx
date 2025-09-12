@@ -18,7 +18,7 @@ function FilterModal({
 	onClose: () => void
 }) {
 	const { data: filters, isLoading } = useFilterData()
-	const { filter, setFilter } = useFilterStore()
+	const { filter, setFilter, resetFilter } = useFilterStore()
 
 	const [localFilter, setLocalFilter] = useState<SearchRequestFilter>(
 		filter || []
@@ -119,7 +119,7 @@ function FilterModal({
 								Apply
 							</button>
 							<button
-								onClick={() => setLocalFilter([])}
+								onClick={() => resetFilter()}
 								className="md:absolute md:top-1/2 md:right-0 underline text-[#078691] font-medium hover:cursor-pointer"
 							>
 								Clear all parameters
