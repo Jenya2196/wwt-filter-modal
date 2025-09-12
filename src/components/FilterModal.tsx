@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { FilterType } from '@/shared/api/types/Filter'
 import {
@@ -11,26 +12,30 @@ import { useFilterStore } from '@/shared/store/filterStore'
 import Modal from './Modal'
 import Button from './UI/Button'
 
-function FilterModal({
+const FilterModal = ({
 	isOpen,
 	onClose
 }: {
 	isOpen: boolean
 	onClose: () => void
-}) {
+}) => {
 	const { data: filters, isLoading } = useFilterData()
 	const { filter, setFilter, resetFilter } = useFilterStore()
-
+	const { t } = useTranslation()
 	const [localFilter, setLocalFilter] = useState<SearchRequestFilter>(
 		filter || []
 	)
 	const [isConfirmOpen, setIsConfirmOpen] = useState(false)
 
 	useEffect(() => {
-		if (isOpen) setLocalFilter(filter || [])
+		if (isOpen) {
+			setLocalFilter(filter || [])
+		}
 	}, [filter, isOpen])
 
-	if (isLoading) return <div>Loading...</div>
+	if (isLoading) {
+		return <div>Loading...</div>
+	}
 
 	const handleApply = () => {
 		setIsConfirmOpen(true)
@@ -48,17 +53,23 @@ function FilterModal({
 
 	const toggleOption = (filterId: string, optionId: string) => {
 		setLocalFilter(prev => {
-			const filterItem = prev.find(f => f.id === filterId)
+			const filterItem = prev.find(item => item.id === filterId)
 
 			if (filterItem) {
 				const optionsIds = filterItem.optionsIds.includes(optionId)
 					? filterItem.optionsIds.filter(id => id !== optionId)
 					: [...filterItem.optionsIds, optionId]
 
-				return prev.map(f => (f.id === filterId ? { ...f, optionsIds } : f))
+				return prev.map(item =>
+					item.id === filterId ? { ...item, optionsIds } : item
+				)
 			} else {
-				const filterFromAPI = filters?.filterItems.find(f => f.id === filterId)
-				if (!filterFromAPI) return prev
+				const filterFromAPI = filters?.filterItems.find(
+					item => item.id === filterId
+				)
+				if (!filterFromAPI) {
+					return prev
+				}
 
 				const newFilter: SearchRequestOptions = {
 					id: filterFromAPI.id,
@@ -99,7 +110,9 @@ function FilterModal({
 										className="mr-4 h-6 w-6"
 										name={option.id}
 										checked={localFilter.some(
-											f => f.id === item.id && f.optionsIds.includes(option.id)
+											item =>
+												item.id === item.id &&
+												item.optionsIds.includes(option.id)
 										)}
 										onChange={() => toggleOption(item.id, option.id)}
 									/>
@@ -111,12 +124,12 @@ function FilterModal({
 					</div>
 				))}
 				<div className="relative flex flex-col justify-center items-center gap-4">
-					<Button onClick={handleApply}>Apply</Button>
+					<Button onClick={handleApply}>{t('apply')}</Button>
 					<button
 						onClick={() => resetFilter()}
 						className="md:absolute md:top-1/2 md:right-0 underline text-[#078691] font-medium hover:cursor-pointer"
 					>
-						Clear all parameters
+						{t('clearAllParameters')}
 					</button>
 				</div>
 			</Modal>
@@ -133,9 +146,9 @@ function FilterModal({
 						onClick={cancelApply}
 						variant="gray"
 					>
-						Cancel
+						{t('cancel')}
 					</Button>
-					<Button onClick={confirmApply}>Confirm</Button>
+					<Button onClick={confirmApply}>{t('confirm')}</Button>
 				</div>
 			</Modal>
 		</>

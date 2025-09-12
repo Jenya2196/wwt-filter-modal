@@ -1,1 +1,9 @@
-{}
+{
+  "apply": "Apply",
+  "clearAllParameters": "Clear all parameters",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "filters":"Filters",
+  "selectedFilters":"Selected Filters",
+  "winWinTravel":"WinWinTravel"
+}

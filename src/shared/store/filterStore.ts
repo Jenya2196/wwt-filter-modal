@@ -10,6 +10,6 @@ type State = {
 
 export const useFilterStore = create<State>(set => ({
 	filter: [],
-	setFilter: f => set({ filter: f }),
+	setFilter: filter => set({ filter }),
 	resetFilter: () => set({ filter: [] })
 }))

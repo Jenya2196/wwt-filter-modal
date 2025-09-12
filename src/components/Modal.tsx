@@ -9,8 +9,7 @@ type ModalProps = {
 	className?: string
 	onClose?: () => void
 }
-
-function Modal({ title, className, children, onClose, isOpen }: ModalProps) {
+const Modal = ({ title, className, children, onClose, isOpen }: ModalProps) => {
 	const mainRef = useRef<HTMLDivElement | null>(null)
 	const [visible, setVisible] = useState(false)
 	const [animateIn, setAnimateIn] = useState(false)
@@ -27,7 +26,9 @@ function Modal({ title, className, children, onClose, isOpen }: ModalProps) {
 		}
 	}, [isOpen])
 
-	if (!visible) return null
+	if (!visible) {
+		return null
+	}
 
 	const handleClose = () => {
 		onClose?.()
@@ -80,7 +81,8 @@ function Modal({ title, className, children, onClose, isOpen }: ModalProps) {
 
 // Сабкомпоненты
 type TSub = { children?: React.ReactNode } & HTMLAttributes<HTMLDivElement>
-function Content({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
+
+const Content = ({ className, ...rest }: HTMLAttributes<HTMLDivElement>) => {
 	return (
 		<div
 			{...rest}
@@ -89,7 +91,7 @@ function Content({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
 	)
 }
 
-function Line({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
+const Line = ({ className, ...rest }: HTMLAttributes<HTMLDivElement>) => {
 	return (
 		<div
 			{...rest}
@@ -97,7 +99,7 @@ function Line({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
 		/>
 	)
 }
-function Footer({ className, children, ...rest }: TSub) {
+const Footer = ({ className, children, ...rest }: TSub) => {
 	return (
 		<div
 			{...rest}

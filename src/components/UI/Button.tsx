@@ -7,7 +7,12 @@ type Props = {
 	variant?: TVariantButton
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-function Button({ variant = 'primary', className, children, ...rest }: Props) {
+const Button = ({
+	variant = 'primary',
+	className,
+	children,
+	...rest
+}: Props) => {
 	const baseClasses =
 		'min-w-[184px] h-[48px] md:h-[64px] text-center px-20 py-5 md:px-16 md:py-6 rounded-2xl font-semibold text-base hover:cursor-pointer flex items-center justify-center '
 	const variantClasses = clsx({
