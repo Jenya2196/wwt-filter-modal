@@ -103,7 +103,7 @@ function Footer({ className, children, ...rest }: TSub) {
 	return (
 		<div
 			{...rest}
-			className={clsx('flex-none pt-4 sticky bottom-0 bg-white', className)}
+			className={clsx('flex-none pt-2 sticky bottom-0 bg-white', className)}
 		>
 			{children}
 		</div>

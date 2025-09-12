@@ -111,14 +111,17 @@ function FilterModal({
 					))}
 
 					<Modal.Footer>
-						<div className="flex justify-center">
+						<div className="flex flex-col justify-center items-center gap-4">
 							<button
 								onClick={handleApply}
 								className="rounded-2xl w-[186px] h-[64px] p-2 bg-[#FF5F00] text-white font-semibold text-base"
 							>
 								Apply
 							</button>
-							<button className="absolute top-1/2 right-0 underline text-[#078691] font-medium hover:cursor-pointer">
+							<button
+								onClick={() => setLocalFilter([])}
+								className="md:absolute md:top-1/2 md:right-0 underline text-[#078691] font-medium hover:cursor-pointer"
+							>
 								Clear all parameters
 							</button>
 						</div>
