@@ -1,6 +1,6 @@
-import { FilterType } from '../Filter'
+import { FilterItem, FilterType } from '../Filter'
 
-export interface SearchRequestFilterBase {
+export interface SearchRequestFilterBase extends FilterItem {
 	id: string
 	type: FilterType
 }
