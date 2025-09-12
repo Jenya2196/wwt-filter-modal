@@ -9,7 +9,7 @@ type Props = {
 
 function Button({ variant = 'primary', className, children, ...rest }: Props) {
 	const baseClasses =
-		'min-w-[184px] h-[64px] text-center px-16 py-6 rounded-2xl font-semibold text-base hover:cursor-pointer flex items-center justify-center '
+		'min-w-[184px] h-[48px] md:h-[64px] text-center px-20 py-5 md:px-16 md:py-6 rounded-2xl font-semibold text-base hover:cursor-pointer flex items-center justify-center '
 	const variantClasses = clsx({
 		'bg-[#FF5F00] hover:bg-[#FF9E59] text-white active:bg-[#FF3D00]':
 			variant === 'primary',
