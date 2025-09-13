@@ -27,11 +27,11 @@ Types:
 
 - `FilterItem` — input data format from API / `filterData.json`
 - `SearchRequestFilter` — output data format to be displayed on the homepage
+  
 ### Additional:
 
 - `clsx` — added to simplify conditional class names in TailwindCSS.
 
-- 
 ### What technologies to use
 
 Required:
